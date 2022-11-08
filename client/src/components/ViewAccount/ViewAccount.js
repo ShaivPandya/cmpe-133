@@ -1,7 +1,6 @@
 function ViewAccount() {
     return (
         <div>
-            <div>Hello</div>
             <div class="row">
                 <div class="border-right border-dark align-items-center text-center col-8">
                     <h1>Your Listings</h1>
