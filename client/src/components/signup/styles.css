@@ -1,0 +1,57 @@
+.signin {
+  text-align: center;
+  position: relative;
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 32px;
+  line-height: 1.125;
+  font-weight: 600;
+  letter-spacing: 0.004em;
+}
+
+#email {
+  width: 24%;
+  margin-top: 1em;
+  padding-right: 43px;
+  color: #494949;
+  height: 2.6em;
+}
+
+#password,
+#confirmpassword {
+  width: 24%;
+  margin-top: 0.4em;
+  padding-right: 43px;
+  color: #494949;
+  height: 2.6em;
+}
+
+.button {
+  background: #0071e3;
+  cursor: pointer;
+  text-align: center;
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: visible;
+  padding: 8px 16px;
+  margin-top: 0.8em;
+}
+
+.button-elevated {
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  line-height: 1.17648;
+}
+
+.login {
+  margin-top: 10px;
+}
+
+#login {
+  text-decoration: none;
+}
