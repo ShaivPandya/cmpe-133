@@ -1,3 +1,5 @@
+import "./styles.css"
+
 function ViewSubmittedApps() {
     return(
         <div>
