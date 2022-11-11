@@ -1,8 +1,9 @@
 import './App.css';
 import { Route, Routes, Link } from "react-router-dom"
-import ViewAccount from './components/ViewAccount/ViewAccount';
-import ViewOpenings from './components/ViewOpenings/ViewOpenings';
-import ViewSubmittedApps from './components/ViewSubmittedApps/ViewSubmittedApps';
+import ViewAccount from './components/User/ViewAccount/ViewAccount';
+import ViewOpenings from './components/User/ViewOpenings/ViewOpenings';
+import ViewSubmittedApps from './components/User/ViewSubmittedApps/ViewSubmittedApps';
+import JobPostingsList from './components/Business/JobPostingsListCompany/JobPostingsList';
 
 function App() {
   return (
