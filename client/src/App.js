@@ -5,20 +5,28 @@ import ViewOpenings from './components/User/ViewOpenings/ViewOpenings';
 import ViewSubmittedApps from './components/User/ViewSubmittedApps/ViewSubmittedApps';
 import JobPostingsList from './components/Business/JobPostingsListCompany/JobPostingsList';
 
+import {SignInScreen, SignUpScreen} from './pages';
+
 function App() {
   return (
     <>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/ViewOpenings">View Openings</Link></li>
-          <li><Link to="/ViewSubmittedApps">View Submitted Applications</Link></li>
-        </ul>
-      </nav>
       <Routes>
         <Route path="/" element={<ViewAccount />} />
-        <Route path="/ViewOpenings" element={<ViewOpenings />} />
-        <Route path="/ViewSubmittedApps" element={<ViewSubmittedApps />} />
+        <Route path="/sign-in" element={<SignInScreen />} />
+        <Route path="/sign-up" element={<SignUpScreen />} />
+        
+        {/* Users */}
+        <Route path="/view-openings" element={<ViewOpenings />} />
+        <Route path="/view-submitted-applications" element={<ViewSubmittedApps />} />
+        <Route path="/job" />
+        <Route path="/application" />
+        
+        {/* Business */}
+        <Route path="/create-job" />
+        <Route path="/edit-job-posting" />
+        <Route path="/view-applications" />
+        <Route path="/view-application" />
+        <Route path="/job-postings" element={<JobPostingsList />} />
       </Routes>
     </>
   );
