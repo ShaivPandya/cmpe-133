@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.json("hello");
 });
 
-// TODO: check if valid sign in
+// check if valid sign in
 app.get("/signIn", (req, res) => {
   const q = "SELECT * FROM Users WHERE email='johndoe@gmail.com' AND password='password123';";
   db.query(q, (err, data) => {
@@ -47,6 +47,16 @@ app.post("/signUp", (req, res) => {
   });
 });
 
+// view submitted applications
+app.get("/submittedApplications", (req, res) => {
+  const q = "SELECT * FROM JobApplications WHERE email=?;";
+  const email = req.body.email;
+  db.query(q, email, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 // get all jobs
 app.get("/jobs", (req, res) => {
   const q = "SELECT * FROM Jobs";
@@ -59,7 +69,25 @@ app.get("/jobs", (req, res) => {
   });
 });
 
+// view a specific job
+app.get("/jobs:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "SELECT * FROM Jobs WHERE idJobs = ? ";
+  db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+})
 
+// view account
+app.get("/users:id", (req, res) => {
+  const email = req.params.id;
+  const q = "SELECT * FROM Users WHERE email = ?";
+  db.query(q, [email], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
 
 // create job
 app.post("/createJob", (req, res) => {
