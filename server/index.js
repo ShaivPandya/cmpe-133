@@ -123,6 +123,16 @@ app.put("/jobs/:id", (req, res) => {
   });
 });
 
+// view created job postings
+app.get("/createdJobs", (req, res) => {
+  const q = "SELECT * FROM Jobs WHERE business = ?;"
+  const email = req.body.business;
+  db.query(q, email, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 app.listen(8800, () => {
     console.log("Connected to backend.");
 });
