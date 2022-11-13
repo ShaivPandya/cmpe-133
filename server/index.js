@@ -143,6 +143,16 @@ app.get("/viewApplications/:id", (req, res) => {
   })
 })
 
+// view a specific application
+app.get("/viewApplication/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "SELECT * FROM JobApplications WHERE idApplication = ?;";
+  db.query(q, [applicationId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 app.listen(8800, () => {
     console.log("Connected to backend.");
 });
