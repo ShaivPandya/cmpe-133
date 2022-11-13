@@ -1,67 +1,33 @@
-const express = require('express');
-const db = require('./config/db')
-const cors = require('cors')
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
 
 const app = express();
-const PORT = 3002;
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-// Route to get all job openings (for users)
-app.get("/api/getAllJobs", (req,res)=>{
-db.query("SELECT * FROM jobs", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
-
-// Route to get one post
-app.get("/api/getFromId/:id", (req,res)=>{
-
-const id = req.params.id;
- db.query("SELECT * FROM posts WHERE id = ?", id, 
- (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-    res.send(result)
-    });   });
-
-// Route for creating the post
-app.post('/api/create', (req,res)=> {
-
-const username = req.body.userName;
-const title = req.body.title;
-const text = req.body.text;
-
-db.query("INSERT INTO posts (title, post_text, user_name) VALUES (?,?,?)",[title,text,username], (err,result)=>{
-   if(err) {
-   console.log(err)
-   } 
-   console.log(result)
-});   })
-
-// Route to like a post
-app.post('/api/like/:id',(req,res)=>{
-
-const id = req.params.id;
-db.query("UPDATE posts SET likes = likes + 1 WHERE id = ?",id, (err,result)=>{
-    if(err) {
-   console.log(err)   } 
-   console.log(result)
-    });    
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "cmpe133",
 });
 
-// Route to delete a post
-app.delete('/api/delete/:id',(req,res)=>{
-const id = req.params.id;
+app.get("/", (req, res) => {
+  res.json("hello");
+});
 
-db.query("DELETE FROM posts WHERE id= ?", id, (err,result)=>{
-if(err) {
-console.log(err)
-        } }) })
+app.get("/jobs", (req, res) => {
+  const q = "SELECT * FROM Jobs";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  });
+});
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running on ＄{PORT}`)
-})
+app.listen(8800, () => {
+    console.log("Connected to backend.");
+});
