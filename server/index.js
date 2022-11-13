@@ -70,7 +70,7 @@ app.get("/jobs", (req, res) => {
 });
 
 // view a specific job
-app.get("/jobs:id", (req, res) => {
+app.get("/jobs/:id", (req, res) => {
   const jobId = req.params.id;
   const q = "SELECT * FROM Jobs WHERE idJobs = ? ";
   db.query(q, [jobId], (err, data) => {
@@ -80,7 +80,7 @@ app.get("/jobs:id", (req, res) => {
 })
 
 // view account
-app.get("/users:id", (req, res) => {
+app.get("/users/:id", (req, res) => {
   const email = req.params.id;
   const q = "SELECT * FROM Users WHERE email = ?";
   db.query(q, [email], (err, data) => {
@@ -105,6 +105,23 @@ app.post("/createJob", (req, res) => {
     return res.json(data);
   });
 })
+
+// Edit job posting
+app.put("/jobs/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "UPDATE Jobs SET `jobTitle`= ?, `location`= ?, `description`= ? WHERE idJobs = ?";
+
+  const values = [
+    req.body.jobTitle,
+    req.body.location,
+    req.body.description,
+  ];
+
+  db.query(q, [...values,jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
 app.listen(8800, () => {
     console.log("Connected to backend.");
