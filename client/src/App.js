@@ -1,32 +1,36 @@
 import './App.css';
-import { Route, Routes, Link } from "react-router-dom"
-import ViewAccount from './components/User/ViewAccount/ViewAccount';
-import ViewOpenings from './components/User/ViewOpenings/ViewOpenings';
-import ViewSubmittedApps from './components/User/ViewSubmittedApps/ViewSubmittedApps';
+import { Route, Routes } from "react-router-dom"
 import JobPostingsList from './components/Business/JobPostingsListCompany/JobPostingsList';
 
-import {SignInScreen, SignUpScreen} from './pages';
+import { 
+  SignInScreen, 
+  SignUpScreen, 
+  ViewAccountPage, 
+  SubmittedApplicationsPage,
+  JobOpenings
+} from './pages';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<ViewAccount />} />
+        {/* Both */}
+        <Route path="/" element={<ViewAccountPage />} />
         <Route path="/sign-in" element={<SignInScreen />} />
-        <Route path="/sign-up" element={<SignUpScreen />} />
+        <Route path="/view-role" />
         
         {/* Users */}
-        <Route path="/view-openings" element={<ViewOpenings />} />
-        <Route path="/view-submitted-applications" element={<ViewSubmittedApps />} />
-        <Route path="/job" />
+        <Route path="/sign-up" element={<SignUpScreen />} />
+        <Route path="/view-openings" element={<JobOpenings />} />
+        <Route path="/view-submitted-applications" element={<SubmittedApplicationsPage />} />
         <Route path="/application" />
         
         {/* Business */}
         <Route path="/create-job" />
         <Route path="/edit-job-posting" />
+        <Route path="/job-postings" element={<JobPostingsList />} />
         <Route path="/view-applications" />
         <Route path="/view-application" />
-        <Route path="/job-postings" element={<JobPostingsList />} />
       </Routes>
     </>
   );
