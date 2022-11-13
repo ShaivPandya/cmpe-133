@@ -1,6 +1,21 @@
 import "./styles.css"
+import React,{ useState,useEffect } from 'react'
+import Axios from 'axios'
 
 function ViewOpenings() {
+    const [ jobList, setJobList ] = useState([]);
+
+    useEffect(() => {
+        Axios.get("http://localhost:3002/api/getAllJobs").then((data) => {
+            setJobsList(data.data)
+        });
+    }, [])
+
+    useEffect(()=>{
+        Axios.get("http://localhost:3002/api/get").then((data)=>{
+        setPostList(data.data)
+        });
+    },[])
     return(
         <div>
             <h1>View Job Openings</h1>
