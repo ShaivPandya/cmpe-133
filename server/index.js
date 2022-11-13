@@ -133,6 +133,16 @@ app.get("/createdJobs", (req, res) => {
   })
 })
 
+// view all applications for a specific role
+app.get("/viewApplications/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "SELECT * FROM JobApplications WHERE idJobs = ?;";
+  db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 app.listen(8800, () => {
     console.log("Connected to backend.");
 });
