@@ -19,8 +19,12 @@ app.get("/", (req, res) => {
 
 // check if valid sign in
 app.get("/signIn", (req, res) => {
-  const q = "SELECT * FROM Users WHERE email='johndoe@gmail.com' AND password='password123';";
-  db.query(q, (err, data) => {
+  const q = "SELECT * FROM Users WHERE email=? AND password=?;";
+  const values = [
+    req.body.email,
+    req.body.password
+  ]
+  db.query(q, values, (err, data) => {
     if (err) {
       console.log(err);
       return res.json(err);
