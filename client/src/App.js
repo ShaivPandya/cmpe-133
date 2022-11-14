@@ -1,6 +1,8 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom"
+import { useState } from 'react';
+import { Route, Routes, UNSAFE_RouteContext } from "react-router-dom"
 import JobPostingsList from './components/Business/JobPostingsListCompany/JobPostingsList';
+import { UserContext } from './UserContext';
 
 import { 
   SignInScreen, 
@@ -15,8 +17,9 @@ function App() {
     <>
       <Routes>
         {/* Both */}
-        <Route path="/" element={<SignInScreen />} />
         <Route path="/view-account" element={<ViewAccountPage />} />
+        <Route path="/" element={<SignInScreen />} />
+        
         <Route path="/view-role" />
         
         {/* Users */}
