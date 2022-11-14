@@ -39,12 +39,15 @@ app.put("/signIn", (req, res) => {
 
 // signup (works with Insomnia)
 app.post("/signUp", (req, res) => {
-  const q = "INSERT INTO Users(`email`, `name`, `password`) VALUES (?)";
+  console.log(req.body);
+  const q = "INSERT INTO Users(`email`, `name`, `password`, `phone`, `dob`) VALUES (?)";
 
   const values = [
     req.body.email,
     req.body.name,
-    req.body.password
+    req.body.password,
+    req.body.phone,
+    req.body.dob
   ];
 
   db.query(q, [values], (err, data) => {
