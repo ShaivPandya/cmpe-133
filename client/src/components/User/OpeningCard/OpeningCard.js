@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, useLocation, createContext, useState } from 'react-router-dom';
 
-function JobPostingCard({parentToChild}) {
+function OpeningCard({parentToChild}) {
     const job = parentToChild;
     console.log(job);
 
@@ -22,21 +22,12 @@ function JobPostingCard({parentToChild}) {
     return(
         <div class="col-md-4">
             <div class="card p-3 mb-2 border-success">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row align-items-center">
-                        <div class="ms-2 c-details">
-                        <button type="submit" class="btn btn-success" onClick={handleSubmit}>Edit Job Posting</button>
-                        </div>
-                    </div>
-                    <div class="btn btn-danger"> <span>Delete</span> </div>
-                </div>
                 <div class="mt-5">
                     <h3 class="heading">{job.jobTitle}</h3>
                     <div class="mt-5">
-                        <div class="mt-3"> <span class="text1">{job.positions} positions available</span> </div>
                         <div class="mt-3"> <span class="text1">{job.location}</span> </div>
                         <br></br>
-                        <button type="submit" class="btn btn-success" onClick={onSubmit}>View Applications</button>
+                        <button type="submit" class="btn btn-success" onClick={onSubmit}>View Details</button>
                     </div>
                 </div>
             </div>
@@ -44,4 +35,4 @@ function JobPostingCard({parentToChild}) {
     )
 }
 
-export default JobPostingCard;
+export default OpeningCard;

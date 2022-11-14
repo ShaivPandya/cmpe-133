@@ -2,6 +2,7 @@ import "./styles.css"
 import React,{ useState,useEffect } from 'react'
 import axios from "axios";
 import ApplicantNav from "../../Navigation/ApplicantNav";
+import OpeningCard from "../OpeningCard/OpeningCard";
 
 function ViewOpenings() {
     const [jobList, setJobList] = useState([]);
@@ -24,14 +25,12 @@ function ViewOpenings() {
         <div>
             <ApplicantNav />
             <h1>View Job Openings</h1>
-            <div className="jobs">
-                {jobList.map((job) => (
-                    <div key={job.idJobs} className="book">
-                        <h2>{job.jobTitle}</h2>
-                        <p>{job.location}</p>
-                        <button>View Job Posting</button>
-                    </div>
-                ))}
+            <div class="container mt-5 mb-3">
+                <div class="row">
+                    {jobList.map((job) => (
+                        <OpeningCard parentToChild={job}/>
+                    ))}
+                </div>
             </div>
         </div>
     )

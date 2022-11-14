@@ -4,6 +4,11 @@
 .style2{
     margin-top: 2em;
 }
+
+.details {
+    margin-left: 10px;
+}
+
 table,th,td{
     border: 1px solid black;
 }
