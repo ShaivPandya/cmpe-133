@@ -9,6 +9,7 @@ import {
   SubmittedApplicationsPage,
   JobOpenings
 } from './pages';
+import CreateJobPosting from './components/Business/CreateJobPosting/CreateJobPosting';
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
         <Route path="/application" />
         
         {/* Business */}
-        <Route path="/create-job" />
+        <Route path="/create-job" element={<CreateJobPosting />}/>
         <Route path="/edit-job-posting" />
         <Route path="/job-postings" element={<JobPostingsList />} />
         <Route path="/view-applications" />
