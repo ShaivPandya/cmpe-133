@@ -1,11 +1,11 @@
 import "./styles.css";
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function SignIn() {
+export default function BusinessSignIn() {
   const [user, setUser] = useState({
-    email: "",
+    name: "",
     password: "",
   });
   const [show, setShow] = useState(false);
@@ -16,7 +16,7 @@ export default function SignIn() {
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/view-account`;
+    let path = `/job-postings`;
     navigate(path);
   };
 
@@ -24,11 +24,11 @@ export default function SignIn() {
     e.preventDefault();
     try {
       console.log(user.password)
-      const res = await axios.put("http://localhost:8800/signIn", user);
+      const res = await axios.put("http://localhost:8800/businessSignIn", user);
       console.log(res.data.length);
       // if res.data.length == 1:
       // navigate to the view-account page with the params
-      if (res.data.length == 1 && user.email != "") {
+      if (res.data.length == 1 && user.name != "") {
         setShow(false);
         routeChange();
       } else {
@@ -43,15 +43,15 @@ export default function SignIn() {
   return (
     <div>
       <div className="signin">
-        <div className="title">Sign In</div>
+        <div className="title">Business Sign In</div>
         <div className="inputs">
           <div>
             <input
               type="text"
               onChange={handleChange}
-              id="email"
-              name="email"
-              placeholder="Email Address"
+              id="name"
+              name="name"
+              placeholder="Name"
             />
           </div>
           <div>
@@ -74,18 +74,14 @@ export default function SignIn() {
         </div>
         {show ? (
           <div className="login-fail">
-            <p id="message">Your email address or password is incorrect.</p>
+            <p id="message">Invalid Credentials.</p>
           </div>
         ) : (
           ""
         )}
         <div className="create">
-          <Link to="/sign-up" id="create">
-            Create New Account
-          </Link>
-          <br />
-          <Link to="/business-sign-in" id="create">
-            Officium for Business
+          <Link to="/" id="create">
+            Officium for Applicants
           </Link>
         </div>
       </div>

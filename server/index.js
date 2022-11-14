@@ -37,6 +37,24 @@ app.put("/signIn", (req, res) => {
   })
 })
 
+// check if valid sign in
+app.put("/businessSignIn", (req, res) => {
+  console.log(req.body);
+  const q = "SELECT * FROM Businesses WHERE name=? AND password=?;";
+  const values = [
+    req.body.name,
+    req.body.password
+  ]
+  
+  db.query(q, values, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  })
+})
+
 // signup (works with Insomnia)
 app.post("/signUp", (req, res) => {
   console.log(req.body);
