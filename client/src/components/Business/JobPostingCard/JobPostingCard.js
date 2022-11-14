@@ -1,9 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate, useLocation, createContext, useState } from 'react-router-dom';
+import axios from 'axios';
 
 function JobPostingCard({parentToChild}) {
     const job = parentToChild;
-    console.log(job);
 
     let navigate = useNavigate();
     const routeChange = () => {
@@ -19,6 +19,17 @@ function JobPostingCard({parentToChild}) {
         navigate(`/edit-job/` + job.idJobs, {idJobs: job.idJobs});
     }
 
+    const del = async (e) => {
+        e.preventDefault();
+        try {
+          const res = await axios.delete(`http://localhost:8800/jobs/${job.idJobs}`);
+          window.location.reload(false);
+          console.log(res);
+        } catch (err) {
+          console.log(err);
+        }
+    }
+
     return(
         <div class="col-md-4">
             <div class="card p-3 mb-2 border-success">
@@ -28,7 +39,7 @@ function JobPostingCard({parentToChild}) {
                         <button type="submit" class="btn btn-success" onClick={handleSubmit}>Edit Job Posting</button>
                         </div>
                     </div>
-                    <div class="btn btn-danger"> <span>Delete</span> </div>
+                    <div class="btn btn-danger" onClick={del}> <span>Delete</span> </div>
                 </div>
                 <div class="mt-5">
                     <h3 class="heading">{job.jobTitle}</h3>
