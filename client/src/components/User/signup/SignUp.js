@@ -28,6 +28,7 @@ export default function SignUp() {
       try {
           const res = await axios.post("http://localhost:8800/signUp", newUser)
           console.log(res.data);
+          routeChange();
       } catch (err) {
           console.log(err);
       }
