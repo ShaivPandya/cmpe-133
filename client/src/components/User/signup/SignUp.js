@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [dob, setDob] = useState("");
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/homepage`;
+    let path = `/`;
     navigate(path);
   };
 
@@ -47,6 +48,24 @@ export default function SignUp() {
               id="confirmpassword"
               name="confirmpassword"
               placeholder="Confirm Password"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              onChange={(e) => setPhone(e.target.value)}
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              onChange={(e) => setDob(e.target.value)}
+              id="dob"
+              name="dob"
+              placeholder="Date of Birth (MM/DD/YYYY)"
             />
           </div>
         </div>
