@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react';
 import { Route, Routes, UNSAFE_RouteContext } from "react-router-dom"
 import JobPostingsList from './components/Business/JobPostingsListCompany/JobPostingsList';
-import { UserContext } from './UserContext';
 
 import { 
   SignInScreen, 
