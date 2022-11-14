@@ -4,13 +4,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from '../../Navigation/Navigation';
 import JobPostingCard from '../JobPostingCard/JobPostingCard';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function JobPostingsList() {
+  const [jobList, setJobList] = useState([]);
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/create-job`;
     navigate(path);
   };
+
+  useEffect(() => {
+    const fetchAllJobs = async() => {
+        try {
+            const res = await axios.put("http://localhost:8800/createdJobs", {business: "Google"})
+            setJobList(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchAllJobs();
+  }, [])
 
   const onSubmit = async () => {
     routeChange();
@@ -25,11 +41,9 @@ function JobPostingsList() {
         <button type="button" class="btn btn-primary" onClick={onSubmit}>Create Job Posting</button>
         <div class="container mt-5 mb-3">
             <div class="row">
-                <JobPostingCard />
-                <JobPostingCard />
-                <JobPostingCard />
-                <JobPostingCard />
-                <JobPostingCard />
+                {jobList.map((job) => (
+                    <JobPostingCard parentToChild={job} />
+                ))}
             </div>
         </div>
     </div>

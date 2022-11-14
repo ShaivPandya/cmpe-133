@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Navigation from '../../Navigation/Navigation';
 
-
 function ApplicationsList() {
   return (
     <div>
@@ -22,73 +21,73 @@ function ApplicationsList() {
             </thead>
             <tbody>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Applied</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Interview Offered</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Interview Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Offered</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>
                 </tr>
                 <tr>
-                <td><a>Saul Goodman</a></td>
+                <td><a href="/view-application">Saul Goodman</a></td>
                 <td>505-503-4455</td>
                 <td>bettercallsaul@gmail.com</td>
                 <td>Job Accepted</td>

@@ -151,10 +151,10 @@ app.put("/jobs/:id", (req, res) => {
 });
 
 // view created job postings
-app.get("/createdJobs", (req, res) => {
+app.put("/createdJobs", (req, res) => {
   const q = "SELECT * FROM Jobs WHERE business = ?;"
-  const email = req.body.business;
-  db.query(q, email, (err, data) => {
+  const name = req.body.business;
+  db.query(q, [name], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   })
