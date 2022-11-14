@@ -9,6 +9,7 @@ function ApplicantNav() {
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
                 <Nav.Link href="/view-account">Account</Nav.Link>
+                <Nav.Link href="/view-submitted-applications">Submitted Applications</Nav.Link>
                 <Nav.Link href="/">Logout</Nav.Link>
             </Nav>
         </Navbar.Collapse>

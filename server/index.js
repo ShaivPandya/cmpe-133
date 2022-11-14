@@ -57,7 +57,7 @@ app.post("/signUp", (req, res) => {
 });
 
 // view submitted applications
-app.get("/submittedApplications", (req, res) => {
+app.put("/submittedApplications", (req, res) => {
   const q = "SELECT * FROM JobApplications WHERE email=?;";
   const email = req.body.email;
   db.query(q, email, (err, data) => {
