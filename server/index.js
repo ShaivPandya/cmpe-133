@@ -1,67 +1,162 @@
-const express = require('express');
-const db = require('./config/db')
-const cors = require('cors')
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
 
 const app = express();
-const PORT = 3002;
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-// Route to get all job openings (for users)
-app.get("/api/getAllJobs", (req,res)=>{
-db.query("SELECT * FROM jobs", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
-
-// Route to get one post
-app.get("/api/getFromId/:id", (req,res)=>{
-
-const id = req.params.id;
- db.query("SELECT * FROM posts WHERE id = ?", id, 
- (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-    res.send(result)
-    });   });
-
-// Route for creating the post
-app.post('/api/create', (req,res)=> {
-
-const username = req.body.userName;
-const title = req.body.title;
-const text = req.body.text;
-
-db.query("INSERT INTO posts (title, post_text, user_name) VALUES (?,?,?)",[title,text,username], (err,result)=>{
-   if(err) {
-   console.log(err)
-   } 
-   console.log(result)
-});   })
-
-// Route to like a post
-app.post('/api/like/:id',(req,res)=>{
-
-const id = req.params.id;
-db.query("UPDATE posts SET likes = likes + 1 WHERE id = ?",id, (err,result)=>{
-    if(err) {
-   console.log(err)   } 
-   console.log(result)
-    });    
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password",
+  database: "cmpe133",
 });
 
-// Route to delete a post
-app.delete('/api/delete/:id',(req,res)=>{
-const id = req.params.id;
+app.get("/", (req, res) => {
+  res.json("hello");
+});
 
-db.query("DELETE FROM posts WHERE id= ?", id, (err,result)=>{
-if(err) {
-console.log(err)
-        } }) })
-
-app.listen(PORT, ()=>{
-    console.log(`Server is running on ＄{PORT}`)
+// check if valid sign in
+app.get("/signIn", (req, res) => {
+  const q = "SELECT * FROM Users WHERE email=? AND password=?;";
+  const values = [
+    req.body.email,
+    req.body.password
+  ]
+  db.query(q, values, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    // figure out a way to like deny entry based on result
+    // prolly more of a frontend thing
+    return res.json(data);
+  })
 })
+
+// signup (works with Insomnia)
+app.post("/signUp", (req, res) => {
+  const q = "INSERT INTO Users(`email`, `name`, `password`) VALUES (?)";
+
+  const values = [
+    req.body.email,
+    req.body.name,
+    req.body.password
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
+// view submitted applications
+app.get("/submittedApplications", (req, res) => {
+  const q = "SELECT * FROM JobApplications WHERE email=?;";
+  const email = req.body.email;
+  db.query(q, email, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// get all jobs
+app.get("/jobs", (req, res) => {
+  const q = "SELECT * FROM Jobs";
+  db.query(q, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.json(err);
+    }
+    return res.json(data);
+  });
+});
+
+// view a specific job
+app.get("/jobs/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "SELECT * FROM Jobs WHERE idJobs = ? ";
+  db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+})
+
+// view account
+app.get("/users/:id", (req, res) => {
+  const email = req.params.id;
+  const q = "SELECT * FROM Users WHERE email = ?";
+  db.query(q, [email], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// create job
+app.post("/createJob", (req, res) => {
+  const q = "INSERT INTO Jobs (business, jobTitle, location, description) VALUES (?)";
+
+  const values = [
+    req.body.business,
+    req.body.jobTitle,
+    req.body.location,
+    req.body.description
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+})
+
+// Edit job posting
+app.put("/jobs/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "UPDATE Jobs SET `jobTitle`= ?, `location`= ?, `description`= ? WHERE idJobs = ?";
+
+  const values = [
+    req.body.jobTitle,
+    req.body.location,
+    req.body.description,
+  ];
+
+  db.query(q, [...values,jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
+// view created job postings
+app.get("/createdJobs", (req, res) => {
+  const q = "SELECT * FROM Jobs WHERE business = ?;"
+  const email = req.body.business;
+  db.query(q, email, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// view all applications for a specific role
+app.get("/viewApplications/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = "SELECT * FROM JobApplications WHERE idJobs = ?;";
+  db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// view a specific application
+app.get("/viewApplication/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "SELECT * FROM JobApplications WHERE idApplication = ?;";
+  db.query(q, [applicationId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+app.listen(8800, () => {
+    console.log("Connected to backend.");
+});
