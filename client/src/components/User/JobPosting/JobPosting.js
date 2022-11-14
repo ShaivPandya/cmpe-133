@@ -31,12 +31,42 @@ export default function JobPosting() {
     return(
         <div>
             <ApplicantNav />
-            <h2>{jobTitle}</h2>
-            <h4>{business}</h4>
-            <h6>{location}</h6>
-            <br />
-            <h6>Job Description</h6>
-            <h6>{description}</h6>
+            <div class="row justify-content-center">
+                <h1>Job Information</h1>
+                <div class="card col-sm-7">
+                    <div class="card-body">
+                    <table class="table user-view-table m-0">
+                        <tbody>
+                        <tr>
+                            <td>Job Title:</td>
+                            <td>{jobTitle}</td>
+                        </tr>
+                        <tr>
+                            <td>Business:</td>
+                            <td>{business}</td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td>{location}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="table user-view-table m-0">
+                        <tbody>
+                        <tr>
+                            <td>Job Description: {description}</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                        <div class="row">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="submit" class="btn btn-primary ">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
