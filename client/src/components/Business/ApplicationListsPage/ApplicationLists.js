@@ -1,13 +1,37 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Navigation from '../../Navigation/Navigation';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import axios from 'axios';
+import TableRow from './TableRow';
 
 function ApplicationsList() {
+  const {idJobs} = useParams();
+  console.log(idJobs);
+
+  const [appList, setApplList] = useState([]);
+  const [jobTitle, setJobTitle] = useState("");
+
+  useEffect(() => {
+    const fetchAllJobs = async() => {
+        try {
+            const res = await axios.get(`http://localhost:8800/viewApplications/${idJobs}`)
+            setApplList(res.data);
+            const result = await axios.get(`http://localhost:8800/jobs/${idJobs}`)
+            setJobTitle(result.data[0].jobTitle);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    fetchAllJobs();
+  }, [])
+
   return (
     <div>
     <Navigation />
       <br></br>
-      <h1> Applications for Defense Attorney</h1>
+      <h1> Applications for {jobTitle}</h1>
       <div class="row justify-content-center">
             <div class="col-sm-7">
             <table class="table table-hover table-bordered table-md " cellspacing="0" width="100%">
@@ -20,78 +44,12 @@ function ApplicationsList() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Applied</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Interview Offered</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Interview Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Offered</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
-                <tr>
-                <td><a href="/view-application">Saul Goodman</a></td>
-                <td>505-503-4455</td>
-                <td>bettercallsaul@gmail.com</td>
-                <td>Job Accepted</td>
-                </tr>
+              {console.log(appList)}
+                {appList.map((app) => (
+                  <tr>
+                    <TableRow parentToChild={app} />
+                  </tr> 
+                ))}
             </tbody>
             </table>
             </div>

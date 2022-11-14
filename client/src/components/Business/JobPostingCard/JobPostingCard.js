@@ -7,7 +7,7 @@ function JobPostingCard({parentToChild}) {
 
     let navigate = useNavigate();
     const routeChange = () => {
-        let path = `/view-applications`;
+        let path = `/view-applications/` + job.idJobs;
         navigate(path);
     };
 
