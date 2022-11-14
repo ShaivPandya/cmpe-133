@@ -19,7 +19,7 @@ function ViewOpenings() {
         fetchAllJobs();
     }, [])
 
-    console.log(jobList);
+    // console.log(jobList);
 
     return(
         <div>

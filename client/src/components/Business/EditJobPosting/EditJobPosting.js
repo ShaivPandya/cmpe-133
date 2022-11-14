@@ -35,7 +35,7 @@ function EditJobPosting() {
     const updateJob = async() => {
       try {
         const res = await axios.put(`http://localhost:8800/updateJob/${idJobs}`, job);
-        console.log(res.data);
+        // console.log(res.data);
         routeChange();
       } catch (err) {
         console.log(err);

@@ -3,7 +3,6 @@ import { useNavigate, useLocation, createContext, useState } from 'react-router-
 
 function OpeningCard({parentToChild}) {
     const job = parentToChild;
-    console.log(job);
 
     let navigate = useNavigate();
     const routeChange = () => {

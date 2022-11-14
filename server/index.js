@@ -182,11 +182,43 @@ app.delete("/users/:id", (req, res) => {
   });
 });
 
+// apply to a job
+app.post("/apply", (req, res) => {
+  const q = "INSERT INTO JobApplications (idJobs, email, Name, DOB, phone) VALUES (?)";
+
+  const values = [
+    req.body.idJobs,
+    req.body.email,
+    req.body.Name,
+    req.body.DOB,
+    req.body.phone
+  ];
+  console.log(req.body);
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    console.log(data);
+    return res.json(data);
+  });
+})
+
 // view all applications for a specific role
 app.get("/viewApplications/:id", (req, res) => {
   const jobId = req.params.id;
   const q = "SELECT * FROM JobApplications WHERE idJobs = ?;";
   db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// get an application by someone for a specific role
+app.put("/checkapplication", (req, res) => {
+  const values = [
+    req.body.idJobs,
+    req.body.email
+  ]
+  const q = "SELECT * FROM JobApplications WHERE idJobs = ? AND email = ?;";
+  db.query(q, values, (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   })

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate, useLocation, createContext, useState } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function JobPostingCard({parentToChild}) {
@@ -24,7 +24,6 @@ function JobPostingCard({parentToChild}) {
         try {
           const res = await axios.delete(`http://localhost:8800/jobs/${job.idJobs}`);
           window.location.reload(false);
-          console.log(res);
         } catch (err) {
           console.log(err);
         }
