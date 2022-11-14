@@ -150,6 +150,17 @@ app.put("/updateJob/:id", (req, res) => {
   });
 });
 
+// delete account
+app.delete("/jobs/:id", (req, res) => {
+  const jobId = req.params.id;
+  const q = " DELETE FROM Jobs WHERE idJobs = ? ";
+
+  db.query(q, [jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
 // view created job postings
 app.put("/createdJobs", (req, res) => {
   const q = "SELECT * FROM Jobs WHERE business = ?;"
