@@ -14,6 +14,7 @@ import ApplicationInformation from './components/Business/ApplicationInformation
 import ApplicationsList from './components/Business/ApplicationListsPage/ApplicationLists';
 import BusinessSignIn from './components/Business/BusinessSignIn/BusinessSignIn';
 import EditJobPosting from './components/Business/EditJobPosting/EditJobPosting';
+import JobPosting from './components/User/JobPosting/JobPosting';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/view-account" element={<ViewAccountPage />} />
         <Route path="/" element={<SignInScreen />} />
         
-        <Route path="/view-role" />
+        <Route path="/view-role/:idJobs" element={<JobPosting />} />
         
         {/* Users */}
         <Route path="/sign-up" element={<SignUpScreen />} />

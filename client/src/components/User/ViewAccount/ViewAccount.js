@@ -47,10 +47,10 @@ function ViewAccount() {
             <div className="row">
                 <ApplicantNav />
                 <div class="details">
-                  <h1>{name}</h1>
-                  <h2>Email: {email}</h2>
-                  <h2>Phone: {phone}</h2>
-                  <h2>Date of Birth: {dob}</h2>
+                  <h2>{name}</h2>
+                  <h4>Email: {email}</h4>
+                  <h4>Phone: {phone}</h4>
+                  <h4>Date of Birth: {dob}</h4>
                   <button className="deleteBtn" onClick={onSubmit}>Delete Account</button>
                 </div>
             </div> 

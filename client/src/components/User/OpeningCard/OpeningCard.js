@@ -7,17 +7,12 @@ function OpeningCard({parentToChild}) {
 
     let navigate = useNavigate();
     const routeChange = () => {
-        let path = `/view-applications/` + job.idJobs;
-        navigate(path);
+        navigate(`/view-role/` + job.idJobs, {idJobs: job.idJobs});
     };
 
     const onSubmit = async () => {
         routeChange();
     };
-
-    const handleSubmit = async () => {
-        navigate(`/edit-job/` + job.idJobs, {idJobs: job.idJobs});
-    }
 
     return(
         <div class="col-md-4">
@@ -25,6 +20,7 @@ function OpeningCard({parentToChild}) {
                 <div class="mt-5">
                     <h3 class="heading">{job.jobTitle}</h3>
                     <div class="mt-5">
+                        <div class="mt-3"> <span class="text1">{job.business}</span> </div>
                         <div class="mt-3"> <span class="text1">{job.location}</span> </div>
                         <br></br>
                         <button type="submit" class="btn btn-success" onClick={onSubmit}>View Details</button>
