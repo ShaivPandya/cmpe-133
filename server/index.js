@@ -133,14 +133,15 @@ app.post("/createJob", (req, res) => {
 })
 
 // Edit job posting
-app.put("/jobs/:id", (req, res) => {
+app.put("/updateJob/:id", (req, res) => {
   const jobId = req.params.id;
-  const q = "UPDATE Jobs SET `jobTitle`= ?, `location`= ?, `description`= ? WHERE idJobs = ?";
+  const q = "UPDATE Jobs SET `jobTitle`= ?, `location`= ?, `description`= ?, `positions`=? WHERE idJobs = ?";
 
   const values = [
     req.body.jobTitle,
     req.body.location,
     req.body.description,
+    req.body.positions
   ];
 
   db.query(q, [...values,jobId], (err, data) => {

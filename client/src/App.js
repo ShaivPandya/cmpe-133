@@ -13,6 +13,7 @@ import CreateJobPosting from './components/Business/CreateJobPosting/CreateJobPo
 import ApplicationInformation from './components/Business/ApplicationInformation/ApplicationInformation';
 import ApplicationsList from './components/Business/ApplicationListsPage/ApplicationLists';
 import BusinessSignIn from './components/Business/BusinessSignIn/BusinessSignIn';
+import EditJobPosting from './components/Business/EditJobPosting/EditJobPosting';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         {/* Business */}
         <Route path="/business-sign-in" element={<BusinessSignIn />} />
         <Route path="/create-job" element={<CreateJobPosting />}/>
-        <Route path="/edit-job-posting" />
+        <Route path="/edit-job/:idJobs" element={<EditJobPosting />} />
         <Route path="/job-postings" element={<JobPostingsList />} />
         <Route path="/view-applications" element={<ApplicationsList />} />
         <Route path="/view-application" element={<ApplicationInformation />} />
