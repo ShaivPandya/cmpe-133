@@ -7,3 +7,7 @@
 table,th,td{
     border: 1px solid black;
 }
+
+.deleteBtn {
+    width: 400px;
+}

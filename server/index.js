@@ -19,7 +19,6 @@ app.get("/", (req, res) => {
 
 // check if valid sign in
 app.put("/signIn", (req, res) => {
-  console.log(req.body);
   const q = "SELECT * FROM Users WHERE email=? AND password=?;";
   const values = [
     req.body.email,
@@ -39,7 +38,6 @@ app.put("/signIn", (req, res) => {
 
 // check if valid sign in
 app.put("/businessSignIn", (req, res) => {
-  console.log(req.body);
   const q = "SELECT * FROM Businesses WHERE name=? AND password=?;";
   const values = [
     req.body.name,
@@ -57,7 +55,6 @@ app.put("/businessSignIn", (req, res) => {
 
 // signup (works with Insomnia)
 app.post("/signUp", (req, res) => {
-  console.log(req.body);
   const q = "INSERT INTO Users(`email`, `name`, `password`, `phone`, `dob`) VALUES (?)";
 
   const values = [
@@ -159,6 +156,17 @@ app.put("/createdJobs", (req, res) => {
     return res.json(data);
   })
 })
+
+// delete account
+app.delete("/users/:id", (req, res) => {
+  const email = req.params.id;
+  const q = " DELETE FROM Users WHERE email = ? ";
+
+  db.query(q, [email], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
 // view all applications for a specific role
 app.get("/viewApplications/:id", (req, res) => {
