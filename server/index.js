@@ -115,17 +115,19 @@ app.get("/users/:id", (req, res) => {
 
 // create job
 app.post("/createJob", (req, res) => {
-  const q = "INSERT INTO Jobs (business, jobTitle, location, description) VALUES (?)";
+  const q = "INSERT INTO Jobs (business, jobTitle, location, description, positions) VALUES (?)";
 
   const values = [
     req.body.business,
     req.body.jobTitle,
     req.body.location,
-    req.body.description
+    req.body.description,
+    req.body.positions
   ];
-
+  console.log(req.body);
   db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
+    console.log(data);
     return res.json(data);
   });
 })
