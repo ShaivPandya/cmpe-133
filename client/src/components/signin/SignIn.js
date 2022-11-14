@@ -22,6 +22,11 @@ export default function SignIn() {
       console.log(res.data.length);
       // if res.data.length == 1:
       // navigate to the view-account page with the params
+      if (res.data.length == 1) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
     } catch (err) {
       console.log(err);
       setError(true)
@@ -68,7 +73,7 @@ export default function SignIn() {
           ""
         )}
         <div className="create">
-          <Link to="/signup" id="create">
+          <Link to="/sign-up" id="create">
             Create New Account
           </Link>
         </div>
