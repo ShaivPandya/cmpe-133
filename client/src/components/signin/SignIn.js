@@ -14,6 +14,12 @@ export default function SignIn() {
     setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/view-account`;
+    navigate(path);
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,8 +28,9 @@ export default function SignIn() {
       console.log(res.data.length);
       // if res.data.length == 1:
       // navigate to the view-account page with the params
-      if (res.data.length == 1) {
+      if (res.data.length == 1 && user.email != "") {
         setShow(false);
+        routeChange();
       } else {
         setShow(true);
       }
