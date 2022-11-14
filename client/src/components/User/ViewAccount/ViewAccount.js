@@ -1,9 +1,11 @@
 import "./styles.css"
+import ApplicantNav from "../../Navigation/ApplicantNav";
 
 function ViewAccount() {
     return (
         <div>
             <div class="row">
+                <ApplicantNav />
                 <div class="border-right border-dark align-items-center text-center col-8">
                     <h1>Your Listings</h1>
                 </div>

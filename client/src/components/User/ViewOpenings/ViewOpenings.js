@@ -1,6 +1,7 @@
 import "./styles.css"
 import React,{ useState,useEffect } from 'react'
 import axios from "axios";
+import ApplicantNav from "../../Navigation/ApplicantNav";
 
 function ViewOpenings() {
     const [jobList, setJobList] = useState([]);
@@ -21,6 +22,7 @@ function ViewOpenings() {
 
     return(
         <div>
+            <ApplicantNav />
             <h1>View Job Openings</h1>
             <div className="jobs">
                 {jobList.map((job) => (

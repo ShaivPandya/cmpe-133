@@ -1,10 +1,10 @@
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
-function Navigation() {
+function ApplicantNav() {
     return(
         <Navbar bg="success" expand="lg">
         <Container>
-        <Navbar.Brand href="/">Officium</Navbar.Brand>
+        <Navbar.Brand href="/view-openings">Officium</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -17,4 +17,4 @@ function Navigation() {
     )
 }
 
-export default Navigation
+export default ApplicantNav
