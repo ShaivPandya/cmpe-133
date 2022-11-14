@@ -29,8 +29,7 @@ function ViewOpenings() {
                     <div key={job.idJobs} className="book">
                         <h2>{job.jobTitle}</h2>
                         <p>{job.location}</p>
-                        <p>{job.description}</p>
-                        <button>Submit</button>
+                        <button>View Job Posting</button>
                     </div>
                 ))}
             </div>
