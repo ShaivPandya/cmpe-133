@@ -86,6 +86,15 @@ export default function SignUp() {
               placeholder="Date of Birth (MM/DD/YYYY)"
             />
           </div>
+          <label for="resume">Choose resume pdf file to upload</label>
+          <div>
+            <input
+              type="file"
+              onChange={handleChange}
+              id="resume"
+              name="resume"
+            />
+          </div>
         </div>
         <div>
           <button
