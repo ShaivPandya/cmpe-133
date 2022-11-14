@@ -1,7 +1,6 @@
 import "./styles.css"
 import React,{ useState,useEffect } from 'react'
 import axios from "axios";
-import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 
 function ViewOpenings() {
     const [jobList, setJobList] = useState([]);
