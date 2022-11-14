@@ -10,6 +10,7 @@ import {
   JobOpenings
 } from './pages';
 import CreateJobPosting from './components/Business/CreateJobPosting/CreateJobPosting';
+import ApplicationInformation from './components/Business/ApplicationInformation/ApplicationInformation';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         <Route path="/edit-job-posting" />
         <Route path="/job-postings" element={<JobPostingsList />} />
         <Route path="/view-applications" />
-        <Route path="/view-application" />
+        <Route path="/view-application" element={<ApplicationInformation />} />
       </Routes>
     </>
   );
