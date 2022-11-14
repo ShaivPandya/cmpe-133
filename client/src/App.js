@@ -11,6 +11,7 @@ import {
 } from './pages';
 import CreateJobPosting from './components/Business/CreateJobPosting/CreateJobPosting';
 import ApplicationInformation from './components/Business/ApplicationInformation/ApplicationInformation';
+import ApplicationsList from './components/Business/ApplicationListsPage/ApplicationLists';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         <Route path="/create-job" element={<CreateJobPosting />}/>
         <Route path="/edit-job-posting" />
         <Route path="/job-postings" element={<JobPostingsList />} />
-        <Route path="/view-applications" />
+        <Route path="/view-applications" element={<ApplicationsList />} />
         <Route path="/view-application" element={<ApplicationInformation />} />
       </Routes>
     </>
