@@ -15,8 +15,9 @@ function App() {
     <>
       <Routes>
         {/* Both */}
-        <Route path="/" element={<ViewAccountPage />} />
-        <Route path="/sign-in" element={<SignInScreen />} />
+        <Route path="/view-account" element={<ViewAccountPage />} />
+        <Route path="/" element={<SignInScreen />} />
+        
         <Route path="/view-role" />
         
         {/* Users */}

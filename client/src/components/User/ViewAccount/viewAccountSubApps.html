@@ -2,21 +2,38 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="styles.css">
 <div class="row">
-    <div style="margin-top: 2em;" class="border-right border-dark align-items-center text-center col-8">
-      <h1>Your Listings</h1>
+    <div  class="border-right border-dark align-items-center text-center col-8 style1">
+      <h1>Your Submitted Applications</h1>
+      <table class="border-right border-dark align-items-center text-center col-8">
+        <tr >
+          <th>Business</th>
+          <th>Applications</th>
+          <th>Status</th>
+        </tr>
+        <tr >
+          <td>Google</td>
+          <td>Application 1</td>
+          <td>Interview</td>
+        </tr>
+        <tr >
+          <td>Treyarch</td>
+          <td>Application 2</td>
+          <td>Accepted</td>
+        </tr>
+      </table>
     </div>
     <div class="d-flex justify-content-center col-4">
-      <div class="card" style="margin-top: 2em;">
+      <div class="card style2">
         <div class="card-body">
           <div class="d-flex flex-column align-items-center text-center">
-            <img src="static/images/default_profile.jpeg" alt="Admin" class="rounded-circle" width="150">
             <div class="mt-3">
               <h4>{{name}}</h4>
               <p class="text-secondary mb-1">{{email}}</p>
+              <p class="text-secondary mb-1">Other User info or settings</p>
               <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-              <a href="{{ url_for('auth.delete') }}"class="btn btn-primary">Delete Account</a>
+              <a class="btn btn-primary">Delete Account</a>
             </div>
           </div>
         </div>

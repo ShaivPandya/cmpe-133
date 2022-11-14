@@ -19,8 +19,10 @@
   height: 2.6em;
 }
 
+#name,
 #password,
-#confirmpassword {
+#phone,
+#dob {
   width: 24%;
   margin-top: 0.4em;
   padding-right: 43px;

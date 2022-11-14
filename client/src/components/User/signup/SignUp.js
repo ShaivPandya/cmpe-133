@@ -1,20 +1,39 @@
 import "./styles.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newUser, setNewUser] = useState({
+    email: "",
+    name: "",
+    password: "",
+    phone: "",
+    dob: ""
+  });
+
+  const handleChange = (e) => {
+    setNewUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/homepage`;
+    let path = `/`;
     navigate(path);
   };
 
   const onSubmit = () => {
-    routeChange();
+    console.log(newUser);
+    const signUp = async() => {
+      try {
+          const res = await axios.post("http://localhost:8800/signUp", newUser)
+          console.log(res.data);
+          routeChange();
+      } catch (err) {
+          console.log(err);
+      }
+    }
+    signUp();
   };
 
   return (
@@ -25,7 +44,7 @@ export default function SignUp() {
           <div>
             <input
               type="text"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleChange}
               id="email"
               name="email"
               placeholder="Email Address"
@@ -33,8 +52,17 @@ export default function SignUp() {
           </div>
           <div>
             <input
+              type="text"
+              onChange={handleChange}
+              id="name"
+              name="name"
+              placeholder="Full Name"
+            />
+          </div>
+          <div>
+            <input
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleChange}
               id="password"
               name="password"
               placeholder="Password"
@@ -42,11 +70,20 @@ export default function SignUp() {
           </div>
           <div>
             <input
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              id="confirmpassword"
-              name="confirmpassword"
-              placeholder="Confirm Password"
+              type="text"
+              onChange={handleChange}
+              id="phone"
+              name="phone"
+              placeholder="Phone Number"
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              onChange={handleChange}
+              id="dob"
+              name="dob"
+              placeholder="Date of Birth (MM/DD/YYYY)"
             />
           </div>
         </div>

@@ -18,12 +18,14 @@ app.get("/", (req, res) => {
 });
 
 // check if valid sign in
-app.get("/signIn", (req, res) => {
+app.put("/signIn", (req, res) => {
+  console.log(req.body);
   const q = "SELECT * FROM Users WHERE email=? AND password=?;";
   const values = [
     req.body.email,
     req.body.password
   ]
+  
   db.query(q, values, (err, data) => {
     if (err) {
       console.log(err);
@@ -37,12 +39,15 @@ app.get("/signIn", (req, res) => {
 
 // signup (works with Insomnia)
 app.post("/signUp", (req, res) => {
-  const q = "INSERT INTO Users(`email`, `name`, `password`) VALUES (?)";
+  console.log(req.body);
+  const q = "INSERT INTO Users(`email`, `name`, `password`, `phone`, `dob`) VALUES (?)";
 
   const values = [
     req.body.email,
     req.body.name,
-    req.body.password
+    req.body.password,
+    req.body.phone,
+    req.body.dob
   ];
 
   db.query(q, [values], (err, data) => {
