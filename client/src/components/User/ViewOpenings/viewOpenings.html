@@ -17,18 +17,30 @@
                <div>
                  <p class="text-muted">${{ Job.status }}</p>
                </div>
-
-               
-   
-                   <p>number of available </p>
-   
-                   
+                   <p>number of available positions</p>
                  </div>
                  <button type="submit" class="btn btn-success">View</button>
                </form>
              </div>
            </div>
          </div>
+         <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ business.name }}</h5>
+            <p class="card-text">{{ Job.view }}</p>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <p class="text-muted">${{ Job.status }}</p>
+              </div>
+                  <p>number of available positions</p>
+                </div>
+                <button type="submit" class="btn btn-success">View</button>
+              </form>
+            </div>
+          </div>
+        </div>
        </div>
      </div>
    </div>
