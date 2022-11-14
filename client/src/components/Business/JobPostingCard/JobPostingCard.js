@@ -1,6 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from 'react-router-dom';
 
 function JobPostingCard() {
+    let navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/view-applications`;
+        navigate(path);
+    };
+
+    const onSubmit = async () => {
+        routeChange();
+    };
+
     return(
         <div class="col-md-4">
             <div class="card p-3 mb-2 border-success">
@@ -18,7 +29,7 @@ function JobPostingCard() {
                         <div class="mt-3"> <span class="text1">15 Positions left</span> </div>
                         <div class="mt-3"> <span class="text1">32 Applied <span class="text2">of 50 capacity</span></span> </div>
                         <br></br>
-                        <button type="submit" class="btn btn-success">View Applications</button>
+                        <button type="submit" class="btn btn-success" onClick={onSubmit}>View Applications</button>
                     </div>
                 </div>
             </div>
