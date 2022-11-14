@@ -1,8 +1,7 @@
 import "./styles.css";
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
 
 export default function SignIn() {
   const [user, setUser] = useState({
