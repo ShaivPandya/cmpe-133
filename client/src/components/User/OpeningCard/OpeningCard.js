@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate, useLocation, createContext, useState } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function OpeningCard({parentToChild}) {
     const job = parentToChild;
