@@ -23,7 +23,6 @@ export default function JobPosting() {
                 setBusiness(res.data[0].business);
                 setLocation(res.data[0].location);
                 setDescription(res.data[0].description);
-                // console.log(res.data[0]);
             } catch (err) {
                 console.log(err);
             }
@@ -53,18 +52,6 @@ export default function JobPosting() {
                     phone: result.data[0].phone
                 })
             }
-            
-            // if (app.data[0]) {
-            //     console.log(app.data[0]);
-            //     const res = await axios.post("http://localhost:8800/apply", {
-            //         idJobs: idJobs,
-            //         email: result.data[0].email,
-            //         Name: result.data[0].name,
-            //         DOB: result.data[0].dob,
-            //         phone: result.data[0].phone
-            //     })
-                // console.log(res.data);
-            // }
             navigate(`/view-openings`);
           } catch (err) {
             console.log(err);

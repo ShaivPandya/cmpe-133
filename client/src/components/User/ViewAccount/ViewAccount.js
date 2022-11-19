@@ -35,7 +35,6 @@ function ViewAccount() {
         e.preventDefault();
         try {
           const res = await axios.delete("http://localhost:8800/users/" + email);
-          // console.log(res);
           routeChange();
         } catch (err) {
           console.log(err);

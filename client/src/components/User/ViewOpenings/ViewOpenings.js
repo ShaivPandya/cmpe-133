@@ -19,8 +19,6 @@ function ViewOpenings() {
         fetchAllJobs();
     }, [])
 
-    // console.log(jobList);
-
     return(
         <div>
             <ApplicantNav />

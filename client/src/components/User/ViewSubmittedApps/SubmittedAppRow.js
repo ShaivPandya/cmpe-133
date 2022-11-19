@@ -1,18 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
 export default function SubmittedApp({parentToChild}) {
     const app = parentToChild;
-
-    let navigate = useNavigate();
-    const routeChange = () => {
-        let path = `/application/` + app.idApplication;
-        navigate(path);
-    };
+    const l = "/application/" + app.idApplication;
     
     return(
         <tr>
             <td>{app.business}</td>
-            <td><a onClick={routeChange}>{app.jobTitle}</a></td>
+            <td><a href={l}>{app.jobTitle}</a></td>
             <td>{app.status}</td>
         </tr>
     )

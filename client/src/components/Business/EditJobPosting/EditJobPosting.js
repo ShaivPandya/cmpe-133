@@ -10,7 +10,6 @@ import axios from 'axios';
 
 function EditJobPosting() {
   const {idJobs} = useParams();
-  console.log(idJobs);
 
   const [job, setJob] = useState({
     business: "Google",
@@ -22,7 +21,6 @@ function EditJobPosting() {
 
   const handleChange = (e) => {
     setJob((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(job);
   };
 
   let navigate = useNavigate();
@@ -35,7 +33,6 @@ function EditJobPosting() {
     const updateJob = async() => {
       try {
         const res = await axios.put(`http://localhost:8800/updateJob/${idJobs}`, job);
-        // console.log(res.data);
         routeChange();
       } catch (err) {
         console.log(err);

@@ -8,7 +8,6 @@ import TableRow from './TableRow';
 
 function ApplicationsList() {
   const {idJobs} = useParams();
-  console.log(idJobs);
 
   const [appList, setApplList] = useState([]);
   const [jobTitle, setJobTitle] = useState("");
@@ -44,7 +43,6 @@ function ApplicationsList() {
                 </tr>
             </thead>
             <tbody>
-              {console.log(appList)}
                 {appList.map((app) => (
                   <tr>
                     <TableRow parentToChild={app} />

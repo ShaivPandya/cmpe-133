@@ -124,7 +124,6 @@ app.post("/createJob", (req, res) => {
     req.body.description,
     req.body.positions
   ];
-  console.log(req.body);
   db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
     console.log(data);
@@ -193,7 +192,6 @@ app.post("/apply", (req, res) => {
     req.body.DOB,
     req.body.phone
   ];
-  console.log(req.body);
   db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
     console.log(data);

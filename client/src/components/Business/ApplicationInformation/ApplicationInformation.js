@@ -8,7 +8,6 @@ import axios from 'axios';
 
 function ApplicationInformation() {
     const {idApplication} = useParams();
-    console.log(idApplication);
 
     const [app, setApp] = useState({});
 
@@ -17,7 +16,6 @@ function ApplicationInformation() {
           try {
             const res = await axios.get(`http://localhost:8800/viewApplication/${idApplication}`);
             setApp(res.data[0]);
-            console.log(app);
           } catch (err) {
             console.log(err);
           }
@@ -30,7 +28,7 @@ function ApplicationInformation() {
         <Navigation />
             <br></br>
             <div className="row justify-content-center">
-            <h1> Saul Goodman's Application</h1>
+            <h1>{app.Name}'s Application</h1>
                 <div className="card col-sm-7">
                     <div className="card-body">
                     <table className="table user-view-table m-0">
