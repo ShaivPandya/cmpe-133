@@ -43,16 +43,37 @@ function ViewAccount() {
     
     return (
         <div>
-            <div className="row">
+            <div className="row justify-content-center">
                 <ApplicantNav />
-                <div className="details">
-                  <h2>{name}</h2>
-                  <h4>Email: {email}</h4>
-                  <h4>Phone: {phone}</h4>
-                  <h4>Date of Birth: {dob}</h4>
-                  <button className="deleteBtn" onClick={onSubmit}>Delete Account</button>
+                <h1> User Profile</h1>
+                <div className="card col-sm-7">
+                    <div className="card-body">
+                        <table className="table user-view-table m-0">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>{name}</td>
+                                </tr>
+                                <tr>
+                                    <td>E-mail:</td>
+                                    <td>{email}</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone:</td>
+                                    <td>{phone}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date of birth:</td>
+                                    <td>{dob}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="row">
+                        <button className="btn btn-danger" onClick={onSubmit}>Delete Account</button>
+                    </div>
                 </div>
-            </div> 
+            </div>
         </div>
     )
 }
