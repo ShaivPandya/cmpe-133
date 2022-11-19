@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import './styles.css'
-import Navigation from '../../Navigation/Navigation';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import ApplicantNav from '../../Navigation/ApplicantNav';
 
 function SubmittedApp() {
     const {idApplication} = useParams();
@@ -25,7 +25,7 @@ function SubmittedApp() {
 
     return (
         <div>
-            <Navigation />
+            <ApplicantNav />
             <br></br>
             <div className="row justify-content-center">
             <h1>{app.Name}'s Application</h1>
