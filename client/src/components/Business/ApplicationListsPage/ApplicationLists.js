@@ -32,11 +32,11 @@ function ApplicationsList() {
     <Navigation />
       <br></br>
       <h1> Applications for {jobTitle}</h1>
-      <div class="row justify-content-center">
-            <div class="col-sm-7">
-            <table class="table table-hover table-bordered table-md " cellspacing="0" width="100%">
+      <div className="row justify-content-center">
+            <div className="col-sm-7">
+            <table className="table table-hover table-bordered table-md " cellspacing="0" width="100%">
             <thead>
-                <tr class="bg-success text-light">
+                <tr className="bg-success text-light">
                 <th>Full name</th>
                 <th>Phone number</th>
                 <th>E-mail</th>

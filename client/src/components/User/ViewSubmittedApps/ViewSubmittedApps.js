@@ -23,9 +23,9 @@ function ViewSubmittedApps() {
         <div>
             <ApplicantNav />
             <h1>View submitted Applications</h1>
-            <table class="center table table-hover table-bordered table-md" cellspacing="0">
+            <table className="center table table-hover table-bordered table-md" cellSpacing="0">
                 <thead>
-                    <tr class="bg-success text-light">
+                    <tr className="bg-success text-light">
                         <td>Company</td>
                         <td>Position</td>
                         <td>Status</td>

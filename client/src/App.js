@@ -15,6 +15,7 @@ import ApplicationsList from './components/Business/ApplicationListsPage/Applica
 import BusinessSignIn from './components/Business/BusinessSignIn/BusinessSignIn';
 import EditJobPosting from './components/Business/EditJobPosting/EditJobPosting';
 import JobPosting from './components/User/JobPosting/JobPosting';
+import SubmittedApp from './components/User/SubmittedApp/SubmittedApp';
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
         <Route path="/sign-up" element={<SignUpScreen />} />
         <Route path="/view-openings" element={<JobOpenings />} />
         <Route path="/view-submitted-applications" element={<SubmittedApplicationsPage />} />
-        <Route path="/application" />
+        <Route path="/application/:idApplication" element={<SubmittedApp />} />
         
         {/* Business */}
         <Route path="/business-sign-in" element={<BusinessSignIn />} />
@@ -38,7 +39,7 @@ function App() {
         <Route path="/edit-job/:idJobs" element={<EditJobPosting />} />
         <Route path="/job-postings" element={<JobPostingsList />} />
         <Route path="/view-applications/:idJobs" element={<ApplicationsList />} />
-        <Route path="/view-application" element={<ApplicationInformation />} />
+        <Route path="/view-application/:idApplication" element={<ApplicationInformation />} />
       </Routes>
     </>
   );

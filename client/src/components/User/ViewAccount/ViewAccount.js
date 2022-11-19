@@ -46,7 +46,7 @@ function ViewAccount() {
         <div>
             <div className="row">
                 <ApplicantNav />
-                <div class="details">
+                <div className="details">
                   <h2>{name}</h2>
                   <h4>Email: {email}</h4>
                   <h4>Phone: {phone}</h4>

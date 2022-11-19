@@ -38,9 +38,9 @@ export default function SignUp() {
 
   return (
     <div>
-      <div class="signin">
-        <div class="title">Sign Up</div>
-        <div class="inputs">
+      <div className="signin">
+        <div className="title">Sign Up</div>
+        <div className="inputs">
           <div>
             <input
               type="text"
@@ -90,12 +90,12 @@ export default function SignUp() {
         <div>
           <button
             onClick={onSubmit}
-            class="button button-elevated"
+            className="button button-elevated"
             type="button">
             Sign Up
           </button>
         </div>
-        <div class="login">
+        <div className="login">
           <Link to="/" id="login">
             Sign In
           </Link>

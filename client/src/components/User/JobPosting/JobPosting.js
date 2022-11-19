@@ -76,11 +76,11 @@ export default function JobPosting() {
     return(
         <div>
             <ApplicantNav />
-            <div class="row justify-content-center">
+            <div className="row justify-content-center">
                 <h1>Job Information</h1>
-                <div class="card col-sm-7">
-                    <div class="card-body">
-                    <table class="table user-view-table m-0">
+                <div className="card col-sm-7">
+                    <div className="card-body">
+                    <table className="table user-view-table m-0">
                         <tbody>
                         <tr>
                             <td>Job Title:</td>
@@ -96,7 +96,7 @@ export default function JobPosting() {
                         </tr>
                         </tbody>
                     </table>
-                    <table class="table user-view-table m-0">
+                    <table className="table user-view-table m-0">
                         <tbody>
                         <tr>
                             <td>Job Description: {description}</td>
@@ -105,9 +105,9 @@ export default function JobPosting() {
                         </tbody>
                     </table>
                     </div>
-                        <div class="row">
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" class="btn btn-primary" onClick={onSubmit}>Apply</button>
+                        <div className="row">
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                            <button type="submit" className="btn btn-primary" onClick={onSubmit}>Apply</button>
                         </div>
                     </div>
                 </div>

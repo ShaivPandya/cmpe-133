@@ -73,7 +73,7 @@ app.post("/signUp", (req, res) => {
 
 // view submitted applications
 app.put("/submittedApplications", (req, res) => {
-  const q = "SELECT business, jobTitle, status, idJobs FROM JobApplications NATURAL JOIN Jobs WHERE email=?";
+  const q = "SELECT * FROM JobApplications NATURAL JOIN Jobs WHERE email=?";
   const email = req.body.email;
   db.query(q, email, (err, data) => {
     if (err) return res.send(err);
@@ -227,7 +227,7 @@ app.put("/checkapplication", (req, res) => {
 // view a specific application
 app.get("/viewApplication/:id", (req, res) => {
   const applicationId = req.params.id;
-  const q = "SELECT * FROM JobApplications WHERE idApplication = ?;";
+  const q = "SELECT * FROM JobApplications NATURAL JOIN Jobs WHERE idApplication = ?;";
   db.query(q, [applicationId], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
