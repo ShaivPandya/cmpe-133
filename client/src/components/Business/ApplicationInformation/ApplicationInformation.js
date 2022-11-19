@@ -16,6 +16,14 @@ function ApplicationInformation() {
           try {
             const res = await axios.get(`http://localhost:8800/viewApplication/${idApplication}`);
             setApp(res.data[0]);
+            
+            if (res.data[0].status == "Not yet viewed") {
+                const update = {
+                    status: "Under review",
+                    idApplication: idApplication
+                }
+                const result = await axios.put("http://localhost:8800/updateApplication", update);
+            }
           } catch (err) {
             console.log(err);
           }
@@ -24,7 +32,6 @@ function ApplicationInformation() {
     }, []);
 
     const updateStatus = async (status) => {
-        console.log(status);
         const update = {
             status: status,
             idApplication: idApplication
