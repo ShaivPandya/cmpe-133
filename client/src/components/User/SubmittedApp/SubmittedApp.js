@@ -23,8 +23,8 @@ function SubmittedApp() {
         fetchUser();
     }, []);
 
-    const updateStatus = () => {
-        return;
+    const updateStatus = (e) => {
+        console.log(e);
     }
 
     return (
@@ -70,9 +70,9 @@ function SubmittedApp() {
                     </div>
                         <div className="row">
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" className="btn btn-primary" onClick={updateStatus}>Offer Interview</button>
-                            <button type="submit" className="btn btn-success" onClick={updateStatus}>Offer Job</button>
-                            <button type="submit" className="btn btn-danger" onClick={updateStatus}>Reject Application</button>
+                            <button type="submit" className="btn btn-primary" onClick={updateStatus("interview")}>Offer Interview</button>
+                            <button type="submit" className="btn btn-success" onClick={updateStatus("offer")}>Offer Job</button>
+                            <button type="submit" className="btn btn-danger" onClick={updateStatus("rejected")}>Reject Application</button>
                             </div>
                         </div>
                 </div>

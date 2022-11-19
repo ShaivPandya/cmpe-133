@@ -23,6 +23,15 @@ function ApplicationInformation() {
         fetchUser();
     }, []);
 
+    const updateStatus = async (status) => {
+        console.log(status);
+        const update = {
+            status: status,
+            idApplication: idApplication
+        }
+        const res = await axios.put("http://localhost:8800/updateApplication", update);
+    }
+
     return (
         <div>
         <Navigation />
@@ -62,9 +71,9 @@ function ApplicationInformation() {
                     </div>
                         <div className="row">
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" className="btn btn-primary ">Offer Interview</button>
-                            <button type="submit" className="btn btn-success ">Offer Job</button>
-                            <button type="submit" className="btn btn-danger ">Reject Application</button>
+                                <button type="submit" className="btn btn-primary" onClick={() => {updateStatus("Interview")}}>Offer Interview</button>
+                                <button type="submit" className="btn btn-success" onClick={() => {updateStatus("Offer")}}>Offer Job</button>
+                                <button type="submit" className="btn btn-danger" onClick={() => {updateStatus("Rejected")}}>Reject Application</button>
                             </div>
                         </div>
                 </div>

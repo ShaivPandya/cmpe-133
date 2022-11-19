@@ -222,6 +222,19 @@ app.put("/checkapplication", (req, res) => {
   })
 })
 
+// get an application by someone for a specific role
+app.put("/updateApplication", (req, res) => {
+  const values = [
+    req.body.status,
+    req.body.idApplication
+  ]
+  const q = "UPDATE JobApplications SET `status` = ? WHERE `idApplication` = ?;";
+  db.query(q, values, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 // view a specific application
 app.get("/viewApplication/:id", (req, res) => {
   const applicationId = req.params.id;
