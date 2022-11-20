@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application } from "express";
 import mysql from "mysql";
 import cors from "cors";
 
@@ -230,6 +230,15 @@ app.put("/updateApplication", (req, res) => {
   ]
   const q = "UPDATE JobApplications SET `status` = ? WHERE `idApplication` = ?;";
   db.query(q, values, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+app.put("/acceptOffer/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "UPDATE JobApplications SET `status` = 'Accepted' WHERE `idApplication` = ?;";
+  db.query(q, [applicationId], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   })

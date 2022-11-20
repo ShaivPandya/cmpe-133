@@ -10,12 +10,16 @@ function ApplicationInformation() {
     const {idApplication} = useParams();
 
     const [app, setApp] = useState({});
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
         const fetchUser = async () => {
           try {
             const res = await axios.get(`http://localhost:8800/viewApplication/${idApplication}`);
             setApp(res.data[0]);
+            if (res.data[0].status == "Accepted") {
+                setShow(false);
+            }
             
             if (res.data[0].status == "Not yet viewed") {
                 const update = {
@@ -78,8 +82,14 @@ function ApplicationInformation() {
                     </div>
                         <div className="row">
                             <div className="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" className="btn btn-primary" onClick={() => {updateStatus("Interview")}}>Offer Interview</button>
-                                <button type="submit" className="btn btn-success" onClick={() => {updateStatus("Offer")}}>Offer Job</button>
+                                {show ? (
+                                    <>
+                                        <button type="submit" className="btn btn-primary" onClick={() => {updateStatus("Interview")}}>Offer Interview</button>
+                                        <button type="submit" className="btn btn-success" onClick={() => {updateStatus("Offer")}}>Offer Job</button>
+                                    </>
+                                ) : (
+                                    <>{console.log(show)}</>
+                                )}
                                 <button type="submit" className="btn btn-danger" onClick={() => {updateStatus("Rejected")}}>Reject Application</button>
                             </div>
                         </div>

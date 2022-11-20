@@ -10,12 +10,14 @@ function SubmittedApp() {
     const {idApplication} = useParams();
 
     const [app, setApp] = useState({});
+    const [show, setShow] = useState(app.status == "Offer");
 
     useEffect(() => {
         const fetchUser = async () => {
           try {
             const res = await axios.get(`http://localhost:8800/viewApplication/${idApplication}`);
             setApp(res.data[0]);
+            setShow(res.data[0].status == "Offer");
           } catch (err) {
             console.log(err);
           }
@@ -23,8 +25,16 @@ function SubmittedApp() {
         fetchUser();
     }, []);
 
-    const updateStatus = (e) => {
-        console.log(e);
+    const acceptOffer = async () => {
+        const res = await axios.put(`http://localhost:8800/acceptOffer/${idApplication}`);
+    }
+    
+    const withdrawApplication = async () => {
+        const update = {
+            status: "Withdrawn",
+            idApplication: idApplication
+        }
+        const res = await axios.put("http://localhost:8800/updateApplication", update);
     }
 
     return (
@@ -70,9 +80,12 @@ function SubmittedApp() {
                     </div>
                         <div className="row">
                             <div className="btn-group" role="group" aria-label="Basic example">
-                            <button type="submit" className="btn btn-primary" onClick={updateStatus("interview")}>Offer Interview</button>
-                            <button type="submit" className="btn btn-success" onClick={updateStatus("offer")}>Offer Job</button>
-                            <button type="submit" className="btn btn-danger" onClick={updateStatus("rejected")}>Reject Application</button>
+                            {show ? (
+                                <button type="submit" className="btn btn-success" onClick={acceptOffer}>Accept Offer</button>
+                            ) : (
+                                ""
+                            )}
+                            <button type="submit" className="btn btn-danger" onClick={withdrawApplication}>Withdraw Application</button>
                             </div>
                         </div>
                 </div>
