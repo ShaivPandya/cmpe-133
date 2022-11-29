@@ -244,6 +244,15 @@ app.put("/acceptOffer/:id", (req, res) => {
   })
 })
 
+app.put("/decreaseCount/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "UPDATE Jobs SET `positions` = (SELECT positions) - 1 WHERE idJobs = ?;"
+  db.query(q, [applicationId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 // view a specific application
 app.get("/viewApplication/:id", (req, res) => {
   const applicationId = req.params.id;

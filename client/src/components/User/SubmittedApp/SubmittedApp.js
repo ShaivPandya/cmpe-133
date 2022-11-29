@@ -27,6 +27,8 @@ function SubmittedApp() {
 
     const acceptOffer = async () => {
         const res = await axios.put(`http://localhost:8800/acceptOffer/${idApplication}`);
+        const idJobs = app.idJobs;
+        const res3 = await axios.put(`http://localhost:8800/decreaseCount/${idJobs}`);
     }
     
     const withdrawApplication = async () => {
