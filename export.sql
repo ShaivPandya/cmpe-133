@@ -100,7 +100,7 @@ CREATE TABLE `Jobs` (
 
 LOCK TABLES `Jobs` WRITE;
 /*!40000 ALTER TABLE `Jobs` DISABLE KEYS */;
-INSERT INTO `Jobs` VALUES (1,'Google','Software Engineer','Mountain View, CA','0-1 Years of experience working with HTML, CSS and JavaScript',2),(2,'Google','Accountant','Mountain View, CA','0-1 years of experience doing math and things of that nature',1),(3,'Apple','Full-stack software engineer','Sunnyvale, CA','2+ years of experience with full-stack development',1),(4,'Google','CTO','Mountain View, CA','No experience required',1),(10,'Google','Janitor','New York City, NY','$1/hr',100);
+INSERT INTO `Jobs` VALUES (1,'Google','Software Engineer','Mountain View, CA','0-1 Years of experience working with HTML, CSS and JavaScript',3),(2,'Google','Accountant','Mountain View, CA','0-1 years of experience doing math and things of that nature',1),(3,'Apple','Full-stack software engineer','Sunnyvale, CA','2+ years of experience with full-stack development',1),(4,'Google','CTO','Mountain View, CA','No experience required',1),(10,'Google','Janitor','New York City, NY','$1/hr',100);
 /*!40000 ALTER TABLE `Jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-29 14:39:50
+-- Dump completed on 2022-11-29 14:44:25
