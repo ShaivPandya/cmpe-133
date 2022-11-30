@@ -11,6 +11,7 @@ function SubmittedApp() {
 
     const [app, setApp] = useState({});
     const [show, setShow] = useState(app.status == "Offer");
+    const [showInt, setShowInt] = useState(app.status == "Interview");
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -18,12 +19,19 @@ function SubmittedApp() {
             const res = await axios.get(`http://localhost:8800/viewApplication/${idApplication}`);
             setApp(res.data[0]);
             setShow(res.data[0].status == "Offer");
+            setShowInt(res.data[0].status == "Interview");
           } catch (err) {
             console.log(err);
           }
         };
         fetchUser();
     }, []);
+
+    const acceptInterview = async () => {
+        // const res = await axios.put(`http://localhost:8800/acceptOffer/${idApplication}`);
+        // const idJobs = app.idJobs;
+        // const res3 = await axios.put(`http://localhost:8800/decreaseCount/${idJobs}`);
+    }
 
     const acceptOffer = async () => {
         const res = await axios.put(`http://localhost:8800/acceptOffer/${idApplication}`);
@@ -87,7 +95,14 @@ function SubmittedApp() {
                             ) : (
                                 ""
                             )}
-                            <button type="submit" className="btn btn-danger" onClick={withdrawApplication}>Withdraw Application</button>
+                            {showInt ? (
+                                <>
+                                    <button type="submit" className="btn btn-success" onClick={acceptInterview}>Accept Interview</button>
+                                    <button type="submit" className="btn btn-danger" onClick={withdrawApplication}>Reject Interview</button>
+                                </>
+                            ) : (
+                                <button type="submit" className="btn btn-danger" onClick={withdrawApplication}>Withdraw Application</button>
+                            )}
                             </div>
                         </div>
                 </div>

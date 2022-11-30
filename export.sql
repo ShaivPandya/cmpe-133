@@ -55,7 +55,7 @@ CREATE TABLE `JobApplications` (
   `Address` varchar(45) DEFAULT NULL,
   `Phone` varchar(45) DEFAULT NULL,
   `Resume` blob,
-  `status` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT 'Not yet viewed',
   PRIMARY KEY (`idApplication`),
   KEY `email_idx` (`email`),
   KEY `idJobs_idx` (`idJobs`),
@@ -115,7 +115,6 @@ CREATE TABLE `Users` (
   `email` varchar(50) NOT NULL,
   `name` varchar(30) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `resume` blob,
   `phone` varchar(45) DEFAULT NULL,
   `dob` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`email`)
@@ -128,7 +127,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('','','',NULL,'',''),('example@example.com','Bob Jones','pass',NULL,NULL,NULL),('jasonsmith@gmail.com','Jason Smith','example',NULL,'(222) 482-3920','05/29/2000'),('johndoe@gmail.com','John Doe','password123',NULL,'(123) 456-7890',NULL),('shaiv@gmail.com','Shaiv','pass123',NULL,NULL,NULL);
+INSERT INTO `Users` VALUES ('example@example.com','Bob Jones','pass',NULL,NULL),('jasonsmith@gmail.com','Jason Smith','example','(222) 482-3920','05/29/2000'),('johndoe@gmail.com','John Doe','password123','(123) 456-7890',NULL),('shaiv@gmail.com','Shaiv','pass123',NULL,NULL);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -141,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-29 14:44:25
+-- Dump completed on 2022-11-29 18:35:46

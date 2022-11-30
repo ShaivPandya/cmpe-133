@@ -84,7 +84,7 @@ function ApplicationInformation() {
                             <div className="btn-group" role="group" aria-label="Basic example">
                                 {show ? (
                                     <>
-                                        <button type="submit" className="btn btn-primary" onClick={() => {updateStatus("Interview")}}>Offer Interview</button>
+                                        <button type="submit" className="btn btn-primary" onClick={() => {updateStatus("Interview offer")}}>Offer Interview</button>
                                         <button type="submit" className="btn btn-success" onClick={() => {updateStatus("Offer")}}>Offer Job</button>
                                     </>
                                 ) : (
