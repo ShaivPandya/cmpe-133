@@ -149,12 +149,22 @@ app.put("/updateJob/:id", (req, res) => {
   });
 });
 
-// delete account
-app.delete("/jobs/:id", (req, res) => {
-  const jobId = req.params.id;
-  const q = " DELETE FROM Jobs WHERE idJobs = ? ";
+// delete job applications
+app.delete("/jobApps/:id", (req, res) => {
+  const idJobs = req.params.id;
+  const q = "DELETE FROM JobApplications WHERE idJobs = ?";
+  console.log(idJobs);
+  db.query(q, [idJobs], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
-  db.query(q, [jobId], (err, data) => {
+// delete from jobs
+app.delete("/jobs/:id", (req, res) => {
+  const idJobs = req.params.id;
+  const q = "DELETE FROM Jobs WHERE idJobs = ?;"
+  db.query(q, [idJobs], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   });
@@ -235,6 +245,7 @@ app.put("/updateApplication", (req, res) => {
   })
 })
 
+// accept a job offer
 app.put("/acceptOffer/:id", (req, res) => {
   const applicationId = req.params.id;
   const q = "UPDATE JobApplications SET `status` = 'Accepted' WHERE `idApplication` = ?;";
@@ -244,6 +255,7 @@ app.put("/acceptOffer/:id", (req, res) => {
   })
 })
 
+// decrease the number of positions available for a position
 app.put("/decreaseCount/:id", (req, res) => {
   const applicationId = req.params.id;
   const q = "UPDATE Jobs SET `positions` = (SELECT positions) - 1 WHERE idJobs = ?;"

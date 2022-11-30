@@ -22,7 +22,8 @@ function JobPostingCard({parentToChild}) {
     const del = async (e) => {
         e.preventDefault();
         try {
-          const res = await axios.delete(`http://localhost:8800/jobs/${job.idJobs}`);
+          const res = await axios.delete(`http://localhost:8800/jobApps/${job.idJobs}`);
+          const res2 = await axios.delete(`http://localhost:8800/jobs/${job.idJobs}`);
           window.location.reload(false);
         } catch (err) {
           console.log(err);
