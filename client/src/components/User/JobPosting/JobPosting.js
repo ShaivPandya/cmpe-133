@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import axios from "axios";
 import ApplicantNav from "../../Navigation/ApplicantNav";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function JobPosting() {
     const {idJobs} = useParams();
@@ -11,6 +12,8 @@ export default function JobPosting() {
     const [business, setBusiness] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+
+    const [email, setEmail] = useState("jasonsmith@gmail.com");
     
     useEffect(() => {
         const fetchJob = async () => {
@@ -20,7 +23,6 @@ export default function JobPosting() {
                 setBusiness(res.data[0].business);
                 setLocation(res.data[0].location);
                 setDescription(res.data[0].description);
-                console.log(res.data[0]);
             } catch (err) {
                 console.log(err);
             }
@@ -28,15 +30,75 @@ export default function JobPosting() {
         fetchJob();
     }, []);
 
+    let navigate = useNavigate();
+    const onSubmit = () => {
+        const apply = async() => {
+          try {
+            // const result = await axios.get(`http://localhost:8800/users/${email}`);
+            const app = await axios.put(`http://localhost:8800/checkapplication`, {
+                email: email,
+                idJobs: idJobs
+            });
+            if (app.data[0]) {
+                console.log(app.data[0]);
+            } else {
+                console.log("No application on file");
+                const result = await axios.get(`http://localhost:8800/users/${email}`);
+                const res = await axios.post("http://localhost:8800/apply", {
+                    idJobs: idJobs,
+                    email: result.data[0].email,
+                    Name: result.data[0].name,
+                    DOB: result.data[0].dob,
+                    phone: result.data[0].phone
+                })
+            }
+            navigate(`/view-openings`);
+          } catch (err) {
+            console.log(err);
+          }
+        }
+        apply();
+      };
+
     return(
         <div>
             <ApplicantNav />
-            <h2>{jobTitle}</h2>
-            <h4>{business}</h4>
-            <h6>{location}</h6>
-            <br />
-            <h6>Job Description</h6>
-            <h6>{description}</h6>
+            <div className="row justify-content-center">
+                <h1>Job Information</h1>
+                <div className="card col-sm-7">
+                    <div className="card-body">
+                    <table className="table user-view-table m-0">
+                        <tbody>
+                        <tr>
+                            <td>Job Title:</td>
+                            <td>{jobTitle}</td>
+                        </tr>
+                        <tr>
+                            <td>Business:</td>
+                            <td>{business}</td>
+                        </tr>
+                        <tr>
+                            <td>Location:</td>
+                            <td>{location}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table className="table user-view-table m-0">
+                        <tbody>
+                        <tr>
+                            <td>Job Description: {description}</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                        <div className="row">
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                            <button type="submit" className="btn btn-primary" onClick={onSubmit}>Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

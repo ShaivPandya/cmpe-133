@@ -22,7 +22,8 @@
 #name,
 #password,
 #phone,
-#dob {
+#dob,
+#resume {
   width: 24%;
   margin-top: 0.4em;
   padding-right: 43px;

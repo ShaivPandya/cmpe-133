@@ -23,11 +23,9 @@ export default function SignUp() {
   };
 
   const onSubmit = () => {
-    console.log(newUser);
     const signUp = async() => {
       try {
           const res = await axios.post("http://localhost:8800/signUp", newUser)
-          console.log(res.data);
           routeChange();
       } catch (err) {
           console.log(err);
@@ -38,9 +36,9 @@ export default function SignUp() {
 
   return (
     <div>
-      <div class="signin">
-        <div class="title">Sign Up</div>
-        <div class="inputs">
+      <div className="signin">
+        <div className="title">Sign Up</div>
+        <div className="inputs">
           <div>
             <input
               type="text"
@@ -87,15 +85,24 @@ export default function SignUp() {
             />
           </div>
         </div>
+        <label for="resume">Choose resume pdf file to upload</label>
+        <div>
+          <input
+            type="file"
+            // onChange={handleChange}
+            id="resume"
+            name="resume"
+          />
+        </div>
         <div>
           <button
             onClick={onSubmit}
-            class="button button-elevated"
+            className="button button-elevated"
             type="button">
             Sign Up
           </button>
         </div>
-        <div class="login">
+        <div className="login">
           <Link to="/" id="login">
             Sign In
           </Link>

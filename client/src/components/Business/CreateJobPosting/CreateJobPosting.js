@@ -19,7 +19,6 @@ function CreateJobPosting() {
 
   const handleChange = (e) => {
     setNewJob((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(newJob);
   };
 
   let navigate = useNavigate();
@@ -32,7 +31,6 @@ function CreateJobPosting() {
     const createNewJob = async() => {
       try {
         const res = await axios.post("http://localhost:8800/createJob", newJob)
-        console.log(res.data);
         routeChange();
       } catch (err) {
         console.log(err);

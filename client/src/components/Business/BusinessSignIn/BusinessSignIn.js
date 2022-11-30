@@ -23,9 +23,7 @@ export default function BusinessSignIn() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(user.password)
       const res = await axios.put("http://localhost:8800/businessSignIn", user);
-      console.log(res.data.length);
       // if res.data.length == 1:
       // navigate to the view-account page with the params
       if (res.data.length == 1 && user.name != "") {

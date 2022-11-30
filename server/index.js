@@ -1,4 +1,4 @@
-import express from "express";
+import express, { application } from "express";
 import mysql from "mysql";
 import cors from "cors";
 
@@ -73,7 +73,7 @@ app.post("/signUp", (req, res) => {
 
 // view submitted applications
 app.put("/submittedApplications", (req, res) => {
-  const q = "SELECT * FROM JobApplications WHERE email=?;";
+  const q = "SELECT * FROM JobApplications NATURAL JOIN Jobs WHERE email=?";
   const email = req.body.email;
   db.query(q, email, (err, data) => {
     if (err) return res.send(err);
@@ -124,7 +124,6 @@ app.post("/createJob", (req, res) => {
     req.body.description,
     req.body.positions
   ];
-  console.log(req.body);
   db.query(q, [values], (err, data) => {
     if (err) return res.send(err);
     console.log(data);
@@ -145,6 +144,27 @@ app.put("/updateJob/:id", (req, res) => {
   ];
 
   db.query(q, [...values,jobId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
+// delete job applications
+app.delete("/jobApps/:id", (req, res) => {
+  const idJobs = req.params.id;
+  const q = "DELETE FROM JobApplications WHERE idJobs = ?";
+  console.log(idJobs);
+  db.query(q, [idJobs], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
+
+// delete from jobs
+app.delete("/jobs/:id", (req, res) => {
+  const idJobs = req.params.id;
+  const q = "DELETE FROM Jobs WHERE idJobs = ?;"
+  db.query(q, [idJobs], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);
   });
@@ -171,6 +191,24 @@ app.delete("/users/:id", (req, res) => {
   });
 });
 
+// apply to a job
+app.post("/apply", (req, res) => {
+  const q = "INSERT INTO JobApplications (idJobs, email, Name, DOB, phone) VALUES (?)";
+
+  const values = [
+    req.body.idJobs,
+    req.body.email,
+    req.body.Name,
+    req.body.DOB,
+    req.body.phone
+  ];
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    console.log(data);
+    return res.json(data);
+  });
+})
+
 // view all applications for a specific role
 app.get("/viewApplications/:id", (req, res) => {
   const jobId = req.params.id;
@@ -181,10 +219,56 @@ app.get("/viewApplications/:id", (req, res) => {
   })
 })
 
+// get an application by someone for a specific role
+app.put("/checkapplication", (req, res) => {
+  const values = [
+    req.body.idJobs,
+    req.body.email
+  ]
+  const q = "SELECT * FROM JobApplications WHERE idJobs = ? AND email = ?;";
+  db.query(q, values, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// get an application by someone for a specific role
+app.put("/updateApplication", (req, res) => {
+  const values = [
+    req.body.status,
+    req.body.idApplication
+  ]
+  const q = "UPDATE JobApplications SET `status` = ? WHERE `idApplication` = ?;";
+  db.query(q, values, (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// accept a job offer
+app.put("/acceptOffer/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "UPDATE JobApplications SET `status` = 'Accepted' WHERE `idApplication` = ?;";
+  db.query(q, [applicationId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
+// decrease the number of positions available for a position
+app.put("/decreaseCount/:id", (req, res) => {
+  const applicationId = req.params.id;
+  const q = "UPDATE Jobs SET `positions` = (SELECT positions) - 1 WHERE idJobs = ?;"
+  db.query(q, [applicationId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  })
+})
+
 // view a specific application
 app.get("/viewApplication/:id", (req, res) => {
   const applicationId = req.params.id;
-  const q = "SELECT * FROM JobApplications WHERE idApplication = ?;";
+  const q = "SELECT * FROM JobApplications NATURAL JOIN Jobs WHERE idApplication = ?;";
   db.query(q, [applicationId], (err, data) => {
     if (err) return res.send(err);
     return res.json(data);

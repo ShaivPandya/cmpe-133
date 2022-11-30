@@ -19,14 +19,12 @@ function ViewOpenings() {
         fetchAllJobs();
     }, [])
 
-    console.log(jobList);
-
     return(
         <div>
             <ApplicantNav />
             <h1>View Job Openings</h1>
-            <div class="container mt-5 mb-3">
-                <div class="row">
+            <div className="container mt-5 mb-3">
+                <div className="row">
                     {jobList.map((job) => (
                         <OpeningCard parentToChild={job}/>
                     ))}

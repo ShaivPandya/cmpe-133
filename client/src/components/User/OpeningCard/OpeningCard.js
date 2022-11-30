@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate, useLocation, createContext, useState } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function OpeningCard({parentToChild}) {
     const job = parentToChild;
-    console.log(job);
 
     let navigate = useNavigate();
     const routeChange = () => {
@@ -15,15 +14,15 @@ function OpeningCard({parentToChild}) {
     };
 
     return(
-        <div class="col-md-4">
-            <div class="card p-3 mb-2 border-success">
-                <div class="mt-5">
-                    <h3 class="heading">{job.jobTitle}</h3>
-                    <div class="mt-5">
-                        <div class="mt-3"> <span class="text1">{job.business}</span> </div>
-                        <div class="mt-3"> <span class="text1">{job.location}</span> </div>
+        <div className="col-md-4">
+            <div className="card p-3 mb-2 border-success">
+                <div className="mt-5">
+                    <h3 className="heading">{job.jobTitle}</h3>
+                    <div className="mt-5">
+                        <div className="mt-3"> <span className="text1">{job.business}</span> </div>
+                        <div className="mt-3"> <span className="text1">{job.location}</span> </div>
                         <br></br>
-                        <button type="submit" class="btn btn-success" onClick={onSubmit}>View Details</button>
+                        <button type="submit" className="btn btn-success" onClick={onSubmit}>View Details</button>
                     </div>
                 </div>
             </div>
