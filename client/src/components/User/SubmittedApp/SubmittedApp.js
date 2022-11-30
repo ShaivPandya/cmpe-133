@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import ApplicantNav from '../../Navigation/ApplicantNav';
+import resume from "./48028402.pdf";
 
 function SubmittedApp() {
     const {idApplication} = useParams();
@@ -86,7 +87,7 @@ function SubmittedApp() {
                         </tr>
                         </tbody>
                     </table>
-                        <iframe src="https://thescriptlab.com/wp-content/uploads/scripts/Better-Call-Saul-S04E10-Winner.pdf" title="FileName"/>
+                    <iframe src={resume} title="FileName"/>
                     </div>
                         <div className="row">
                             <div className="btn-group" role="group" aria-label="Basic example">
