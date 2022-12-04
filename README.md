@@ -35,7 +35,7 @@ How to get: run npm install react-router-dom
 10. Start the frontend
  - In your terminal, in the client folder, run `npm start`
 11. Navigate to the server folder
- - In your terminal, from the client folder, run `cd ../server`
+ - Open a new terminal window in the cmpe-133 folder and run `cd ../server`
 12. Start the backend
  - In your terminal, in the ‘server’ folder, run `npm run devStart`
 13. Open up your browser to ‘localhost:3000’
