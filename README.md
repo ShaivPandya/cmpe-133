@@ -1,6 +1,7 @@
 # Officium
 
 ## Libraries and open source packages used
+To install all packages run `npm install` or `npm i` in the 'client' director
 ### Axios
 How to get: run npm install axios
 
@@ -10,7 +11,7 @@ How to get: run npm install react-bootstrap
 ### Nodemon
 How to get: run npm install nodemon
 
-### Mysql
+### MySQL
 How to get: run npm install mysql
 
 ### React Router
