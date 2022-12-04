@@ -1,7 +1,7 @@
 # Officium
 
 ## Libraries and open source packages used
-To install all packages run `npm install` or `npm i` in the 'client' director
+To install all packages run `npm install` or `npm i` in the 'client' directory
 ### Axios
 How to get: run npm install axios
 
